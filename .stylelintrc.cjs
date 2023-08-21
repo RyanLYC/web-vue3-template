@@ -21,5 +21,6 @@ module.exports = {
     'selector-class-pattern': null,
     'no-descending-specificity': null,
     'font-family-no-missing-generic-family-keyword': null,
+    'color-hex-case': 'lower',
   },
 }
