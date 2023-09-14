@@ -12,6 +12,7 @@
 10. 全屏 -  "screenfull": "^6.0.2",
 11. 权限管理 - 权限 - 角色 - 用户
 12. 权限 指令 控制组件是否显示
+13. useTeleport  将内容挂在在其他地方展示如：弹窗
 
 ## 项目运行
 
@@ -27,9 +28,10 @@
         ```
         yarn build
 
-### 纯净版本 - https://github.com/RyanLYC/vue3-template
+### [纯净版本](https://github.com/RyanLYC/vue3-template)
 
-### 换肤
+### 换肤 - [参考](https://github.com/RyanLYC/RyanLYC/blob/main/CSS/%E5%89%8D%E7%AB%AF%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2%E6%96%B9%E6%A1%88%E8%AF%A6%E8%A7%A3.md)
+
 1. 方案一 - 项目中使用  variables.module.scss 中 的 :export 把sass变量导出，然后存放在appStore的变量中，换肤就是更改值即可。
 2. 方案二 - 自定义好皮肤更换
 ```css
