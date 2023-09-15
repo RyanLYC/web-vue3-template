@@ -5,8 +5,8 @@
     :width="props.size"
     :height="props.size"
   >
-    <defs v-if="props.gradientColor">
-      <linearGradient id="gradient" v-bind="direction" ref="gradient">
+    <defs>
+      <linearGradient :id="linearGradientId" v-bind="direction" ref="gradient">
         <stop offset="0%" :stop-color="props.color"></stop>
         <stop offset="100%" :stop-color="props.gradientColor"></stop>
       </linearGradient>
@@ -16,7 +16,6 @@
 </template>
 
 <script lang="ts" setup>
-// import { isExternal as external } from '@/utils/validate'
 import { computed } from 'vue'
 const props = defineProps({
   prefix: {
@@ -46,9 +45,12 @@ const props = defineProps({
 })
 
 const symbolId = computed(() => `#${props.prefix}-${props.name}`)
+const linearGradientId = computed(
+  () => `gradient-${props.prefix}-${props.name}`
+)
 const svgFill = computed(() => {
   if (props.gradientColor) {
-    return 'url(#gradient)'
+    return `url(#${linearGradientId.value})`
   }
   return props.color
 })
