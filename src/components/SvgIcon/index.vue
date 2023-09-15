@@ -5,7 +5,7 @@
     :width="props.size"
     :height="props.size"
   >
-    <defs>
+    <defs v-if="props.gradientColor">
       <linearGradient :id="linearGradientId" v-bind="direction" ref="gradient">
         <stop offset="0%" :stop-color="props.color"></stop>
         <stop offset="100%" :stop-color="props.gradientColor"></stop>
