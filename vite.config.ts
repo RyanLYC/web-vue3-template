@@ -4,7 +4,8 @@ import eslintPlugin from 'vite-plugin-eslint'
 import stylelintPlugin from 'vite-plugin-stylelint'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { fileURLToPath, URL } from 'node:url'
-import VitePluginSVGSpritemap from '@spiriit/vite-plugin-svg-spritemap'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,7 +14,12 @@ export default defineConfig({
     vueJsx(),
     eslintPlugin(),
     stylelintPlugin({ fix: true }),
-    VitePluginSVGSpritemap('./src/icons/*.svg'),
+    // VitePluginSVGSpritemap('./src/icons/*.svg'),
+    createSvgIconsPlugin({
+      // svg所在文件夹位置
+      iconDirs: [path.resolve(process.cwd(), 'src/icons')],
+      symbolId: 'icon-[dir]-[name]',
+    }),
   ],
   resolve: {
     alias: {

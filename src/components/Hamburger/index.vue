@@ -1,6 +1,6 @@
 <template>
   <div class="hamburger-container" @click="toggleClick">
-    <svg-icon id="guide-hamburger" class="hamburger" :icon="icon"></svg-icon>
+    <svg-icon id="guide-hamburger" class="hamburger" :name="name"></svg-icon>
   </div>
 </template>
 
@@ -13,7 +13,7 @@ const toggleClick = () => {
   appStore.triggerSidebarOpened()
 }
 
-const icon = computed(() =>
+const name = computed(() =>
   appStore.sidebarOpened ? 'hamburger-opened' : 'hamburger-closed'
 )
 </script>
@@ -23,8 +23,8 @@ const icon = computed(() =>
   padding: 0 16px;
   .hamburger {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     vertical-align: middle;
   }
 }

@@ -2,8 +2,8 @@
   <div :class="{ show: isShow }" class="header-search">
     <svg-icon
       id="guide-search"
-      class-name="search-icon"
-      icon="search"
+      class="search-icon"
+      name="search"
       @click.stop="onShowClick"
     />
     <el-select

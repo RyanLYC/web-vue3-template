@@ -3,7 +3,7 @@
     <component :is="icon"
   /></el-icon>
 
-  <svg-icon v-else :icon="icon"></svg-icon>
+  <svg-icon v-else :name="icon"></svg-icon>
   <span>{{ generateTitle(title) }}</span>
 </template>
 

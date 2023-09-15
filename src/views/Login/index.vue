@@ -36,7 +36,7 @@
         <span class="show-pwd">
           <span class="svg-container">
             <svg-icon
-              :icon="passwordType === 'password' ? 'eye' : 'eye-open'"
+              :name="passwordType === 'password' ? 'eye' : 'eye-open'"
               @click="onChangePwdType"
             />
           </span>

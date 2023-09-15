@@ -1,7 +1,13 @@
 <template>
   <div>
     <el-tooltip :content="$t('navBar.guide')">
-      <svg-icon id="guide-start" icon="guide" @click="onClick" />
+      <svg-icon
+        id="guide-start"
+        name="guide"
+        @click="onClick"
+        :color="'#ff0000'"
+        :gradientColor="'#00ff00'"
+      />
     </el-tooltip>
   </div>
 </template>

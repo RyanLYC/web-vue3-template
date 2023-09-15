@@ -4,7 +4,7 @@
 2. vue-router
 3. axios
 4. Pinia
-5. 本地svg icon - '@spiriit/vite-plugin-svg-spritemap'
+5. 本地svg icon - 'vite-plugin-svg-icons'  支持渐变色
 6. vue-i18n 支持多语言
 7. keep-alive
 8. 功能引导页  -   "driver.js": "^1.1.0",

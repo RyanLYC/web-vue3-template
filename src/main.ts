@@ -13,6 +13,7 @@ import './styles/reset.css'
 import './styles/index.scss'
 // 全局导入SvgIcon
 import SvgIcon from '@/components/SvgIcon/index.vue'
+import 'virtual:svg-icons-register'
 import { toLine } from './utils'
 // 指令
 import installDirective from '@/directives'

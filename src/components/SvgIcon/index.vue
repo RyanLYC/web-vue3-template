@@ -1,71 +1,87 @@
 <template>
-  <div
-    v-if="isExternal"
-    :style="styleExternalIcon"
-    class="svg-external-icon svg-icon"
-    :class="className"
-  ></div>
   <svg
-    v-else
-    class="svg-icon"
-    :class="className"
-    :style="{ color: color }"
     aria-hidden="true"
+    class="svg-icon"
+    :width="props.size"
+    :height="props.size"
   >
-    <use :xlink:href="iconName" />
+    <defs v-if="props.gradientColor">
+      <linearGradient id="gradient" v-bind="direction" ref="gradient">
+        <stop offset="0%" :stop-color="props.color"></stop>
+        <stop offset="100%" :stop-color="props.gradientColor"></stop>
+      </linearGradient>
+    </defs>
+    <use :xlink:href="symbolId" :fill="svgFill" />
   </svg>
 </template>
 
 <script lang="ts" setup>
-import { isExternal as external } from '@/utils/validate'
+// import { isExternal as external } from '@/utils/validate'
 import { computed } from 'vue'
-
 const props = defineProps({
-  // icon 图标
-  icon: {
+  prefix: {
+    type: String,
+    default: 'icon',
+  },
+  name: {
     type: String,
     required: true,
   },
-  // 图标类名
-  className: {
+  color: {
+    type: String,
+    default: '#666',
+  },
+  size: {
+    type: String,
+    default: '1em',
+  },
+  gradientColor: {
     type: String,
     default: '',
   },
-  color: {
+  gradientAngle: {
     type: String,
-    default: '',
+    default: '1',
   },
 })
 
-/**
- * 判断是否为外部图标
- */
-const isExternal = computed(() => external(props.icon))
-/**
- * 外部图标样式
- */
-const styleExternalIcon = computed(() => ({
-  mask: `url(${props.icon}) no-repeat 50% 50%`,
-  '-webkit-mask': `url(${props.icon}) no-repeat 50% 50%`,
-}))
-/**
- * 项目内图标
- */
-const iconName = computed(() => `__spritemap#sprite-${props.icon}`)
+const symbolId = computed(() => `#${props.prefix}-${props.name}`)
+const svgFill = computed(() => {
+  if (props.gradientColor) {
+    return 'url(#gradient)'
+  }
+  return props.color
+})
+const direction = computed(() => {
+  switch (props.gradientAngle) {
+    case '1':
+      return { x1: '0%', x2: '100%', y1: '0%', y2: '0%' }
+    case '2':
+      return { x1: '0%', x2: '100%', y1: '100%', y2: '0%' }
+    case '3':
+      return { x1: '0%', x2: '0%', y1: '100%', y2: '0%' }
+    case '4':
+      return { x1: '100%', x2: '0%', y1: '100%', y2: '0%' }
+    case '5':
+      return { x1: '100%', x2: '0%', y1: '0%', y2: '0%' }
+    case '6':
+      return { x1: '0%', x2: '100%', y1: '0%', y2: '100%' }
+    case '7':
+      return { x1: '0%', x2: '0%', y1: '0%', y2: '100%' }
+    case '8':
+      return { x1: '100%', x2: '0%', y1: '0%', y2: '100%' }
+    default:
+      return { x1: '0%', x2: '100%', y1: '0%', y2: '0%' }
+  }
+})
 </script>
 
 <style scoped>
 .svg-icon {
-  width: 1em;
-  height: 1em;
-  overflow: hidden;
-  vertical-align: -0.15em;
-  fill: currentcolor;
+  vertical-align: middle;
 }
-
-.svg-external-icon {
-  display: inline-block;
-  background-color: currentcolor;
-  mask-size: cover !important;
+.svgFill {
+  /* url('#gradient'); */
+  fill: v-bind('svgFill');
 }
 </style>
